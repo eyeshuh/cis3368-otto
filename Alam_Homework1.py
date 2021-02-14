@@ -6,6 +6,18 @@
 # Each option is represented by a single character
 # The program initially outputs the menu, and outputs the menu after a user chooses an option
 
+#import datetime
+#from datetime import date
+
+import mysql.connector
+from mysql.connector import Error
+
+class Contacts:
+    def __init__(self, id, contactDetails, creationDate):
+        self.id = id
+        self.contactDetails = contactDetails
+        self.creationDate = creationDate 
+
 def db_connection(host_name, user_name, user_password, db_name):
     connection = None
     try:
@@ -24,7 +36,6 @@ def db_connection(host_name, user_name, user_password, db_name):
 
 def menu_output():
     print("MENU")
-
     print("a - Add contact")
     print("d - Delete contact")
     print("u - Update contact details")
@@ -54,4 +65,8 @@ def user_choice():
         print("Output all contacts")
 
 user_choice()
+
+def add_contact():
+    query = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('Thomas Edison', '05-08-2021'" + str_dob + "')"
+
 
