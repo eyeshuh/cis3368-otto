@@ -35,7 +35,7 @@ db_cursor = my_db.cursor()
 
 def menu_output():
     print("MENU")
-    print("a - Add contact")  # IP
+    print("a - Add contact")  # Done
     print("d - Delete contact")  # IP
     print("u - Update contact details")  # IP
     print("b - Output all contacts in alphabetical order")  # Done
@@ -53,29 +53,36 @@ def main():
     # A - ADD CONTACTS
 
     if user_input == 'a':
-        pass
         add_contact = str(input("Please enter full name: "))
-        add_date = str(input("Please enter date as yyyy/mm/dd"))
+        add_date = str(input("Please enter date as yyyy-mm-dd: "))
 
-        sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES (%s, %s)"
-        sql_query_add_contact_value = (add_contact, add_date)
+        sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s', '%s')" % (add_contact, add_date)
 
-        db_cursor.execute(sql_query_add_contact, sql_query_add_contact_value)
+        db_cursor.execute(sql_query_add_contact)
         my_db.commit()
-        print(db_cursor.rowcount, "contact inesrted")
+        print(db_cursor.rowcount, "contact inserted")
 
     # D - DELETE CONTACT
 
-    # elif user_input == 'd':
-        # pass
-        # delete_query = str(input("Please enter the FULL name of the contact you wish to delete: \n")
-        #delete_contact = "DELETE FROM contacts WHERE contactDetails = '%s'" % (delete_query)
-        # delete_contact = "DELETE FROM contacts WHERE contactDetails = " + delete_query "
-        # db_cursor.execute(delete_contact)
+    elif user_input == 'd':
+        pass
+        #sql_delete = int(input("Please enter the ID of the contact you wish to delete: \n")
+        #delete_contact = """DELETE FROM contacts WHERE id = %s"""
+
+        #db_cursor.execute(delete_contact, sql_delete)
+        #my_db.commit()
 
         #print(db_cursor.rowcount, "contact deleted")
 
     # U - UPDATE CONTACT DETAILS
+
+    elif user_input == 'u':
+        update_input_1 = int(input("Please enter the id of the contact you wish to update: "))
+        update_input_2 = str(input("Please enter the new name: "))
+        update_input_3 = str(input("Please enter the creationDate: "))
+
+        update_query = "UPDATE contacts SET contactDeails = '%' WHERE creationDate = '%s'" % 
+
     # B - OUTPUT IN ALPHA ORDER
 
     elif user_input == "b":
