@@ -2,12 +2,8 @@
 # CIS 3368 - Otto
 # Homework 1
 
-# Implement a menu of options for a user to modify the contact details
-# Each option is represented by a single character
-# The program initially outputs the menu, and outputs the menu after a user chooses an option
-
-#import datetime
-#from datetime import date
+import datetime
+from datetime import date
 
 import mysql.connector
 
@@ -56,7 +52,8 @@ def main():
         add_contact = str(input("Please enter full name: "))
         add_date = str(input("Please enter date as yyyy-mm-dd: "))
 
-        sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s', '%s')" % (add_contact, add_date)
+        sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s', '%s')" % (
+            add_contact, add_date)
 
         db_cursor.execute(sql_query_add_contact)
         my_db.commit()
@@ -66,22 +63,25 @@ def main():
 
     elif user_input == 'd':
         pass
-        #sql_delete = int(input("Please enter the ID of the contact you wish to delete: \n")
+        # sql_delete = int(input("Please enter the ID of the contact you wish to delete: \n")
         #delete_contact = """DELETE FROM contacts WHERE id = %s"""
 
         #db_cursor.execute(delete_contact, sql_delete)
-        #my_db.commit()
+        # my_db.commit()
 
         #print(db_cursor.rowcount, "contact deleted")
 
     # U - UPDATE CONTACT DETAILS
 
     elif user_input == 'u':
-        update_input_1 = int(input("Please enter the id of the contact you wish to update: "))
+        update_input_1 = int(
+            input("Please enter the id of the contact you wish to update: "))
         update_input_2 = str(input("Please enter the new name: "))
-        update_input_3 = str(input("Please enter the creationDate: "))
 
-        update_query = "UPDATE contacts SET contactDeails = '%' WHERE creationDate = '%s'" % 
+        current_time = datetime.datetime.now()
+        time_format = current_time.strftime("%Y-%m-%d")
+
+        update_query = "UPDATE contacts SET contactDeails = '%' WHERE creationDate = '%s'" %
 
     # B - OUTPUT IN ALPHA ORDER
 
@@ -137,3 +137,4 @@ main()
 # references
 # https://www.w3schools.com/python/python_mysql_insert.asp
 # https://www.w3schools.com/python/python_mysql_orderby.asp
+# https://www.w3resource.com/python-exercises/python-basic-exercise-3.php
