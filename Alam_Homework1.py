@@ -7,10 +7,6 @@ from datetime import date
 
 import mysql.connector
 
-import datetime
-from datetime import date
-
-
 # class Contacts:
 # def __init__(self, contact_id, contactDetails, creationDate):
 #self.id = contact_id
@@ -33,7 +29,7 @@ def menu_output():
     print("MENU")
     print("a - Add contact")  # Done
     print("d - Delete contact")  # IP
-    print("u - Update contact details")  # IP
+    print("u - Update contact details")  # DONE BUT TRY A DIFFERENT APPROACH FOR THE DATE 
     print("b - Output all contacts in alphabetical order")  # Done
     print("c - Output all contacts by creatation date")  # Done
     print("o - Output all contacts")  # Done
@@ -44,91 +40,111 @@ def menu_output():
 
 def main():
     menu_output()
-    user_input = str(input())
 
-    # A - ADD CONTACTS
+    while True:
+        user_input = str(input())
 
-    if user_input == 'a':
-        add_contact = str(input("Please enter full name: "))
-        add_date = str(input("Please enter date as yyyy-mm-dd: "))
+        if user_input != 'a' or if user_input != 'd' or if user_input != 'u' or if user_input != 'b' or if user_input != 'c' or if user_input != 'o' or if user_input != 'q':
+            print("Invalid. Please choose one of the following menu options: \n")
 
-        sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s', '%s')" % (
-            add_contact, add_date)
 
-        db_cursor.execute(sql_query_add_contact)
-        my_db.commit()
-        print(db_cursor.rowcount, "contact inserted")
+        # A - ADD CONTACTS
 
-    # D - DELETE CONTACT
+        elif user_input == 'a':
+            add_contact = str(input("Please enter full name: "))
+            add_date = str(input("Please enter date as yyyy-mm-dd: "))
 
-    elif user_input == 'd':
-        pass
-        # sql_delete = int(input("Please enter the ID of the contact you wish to delete: \n")
-        #delete_contact = """DELETE FROM contacts WHERE id = %s"""
+            sql_query_add_contact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s', '%s')" % (
+                add_contact, add_date)
 
-        #db_cursor.execute(delete_contact, sql_delete)
-        # my_db.commit()
+            db_cursor.execute(sql_query_add_contact)
+            my_db.commit()
+            print(db_cursor.rowcount, "contact inserted")
 
-        #print(db_cursor.rowcount, "contact deleted")
+        # D - DELETE CONTACT
 
-    # U - UPDATE CONTACT DETAILS
+        elif user_input == 'd':
+            pass
+            # sql_delete = int(input("Please enter the ID of the contact you wish to delete: \n")
+            #delete_contact = """DELETE FROM contacts WHERE id = %s"""
 
-    elif user_input == 'u':
-        update_input_1 = int(
-            input("Please enter the id of the contact you wish to update: "))
-        update_input_2 = str(input("Please enter the new name: "))
+            #db_cursor.execute(delete_contact, sql_delete)
+            # my_db.commit()
 
-        current_time = datetime.datetime.now()
-        time_format = current_time.strftime("%Y-%m-%d")
+            #print(db_cursor.rowcount, "contact deleted")
 
-        update_query = "UPDATE contacts SET contactDeails = '%' WHERE creationDate = '%s'" %
+        # U - UPDATE CONTACT DETAILS
 
-    # B - OUTPUT IN ALPHA ORDER
+        elif user_input == 'u':
+            update_input_1 = str(input("Please enter the full name of the contact you wish to update: "))
+            update_input_2 = str(input("Please enter the new name: "))
+            update_input_3 = str(input("Please enter the new date in yyyy-mm-dd: "))
 
-    elif user_input == "b":
-        order_by_creation = "SELECT * FROM contacts ORDER BY contactDetails"
-        db_cursor.execute(order_by_creation)
+            update_query_1 = """ 
+            UPDATE contacts 
+            SET contactDetails = '%s' 
+            WHERE contactDetails = '%s'""" % (update_input_2, update_input_1)
 
-        output_result = db_cursor.fetchall()
-        print("List of contacts Alphabetically: \n")
+            db_cursor.execute(update_query_1)
 
-        for row in output_result:
-            print("ID: ", row[0])
-            print("contactDetails: ", row[1])
-            print("creationDate: ", row[2], "\n")
+            update_query_2 = """ 
+            UPDATE contacts 
+            SET creationDate = '%s' 
+            WHERE contactDetails = '%s' """ % (update_input_3, update_input_2)
 
-    # C - OUTPUT BY CREATION DATE
+            db_cursor.execute(update_query_2)
+            my_db.commit()
 
-    elif user_input == 'c':
-        order_by_creation = "SELECT * FROM contacts ORDER BY creationDate"
-        db_cursor.execute(order_by_creation)
+            print(db_cursor.rowcount, "contact updated")
 
-        output_result = db_cursor.fetchall()
-        print("List of contacts by creationDate: \n")
+        # B - OUTPUT IN ALPHA ORDER
 
-        for row in output_result:
-            print("ID: ", row[0])
-            print("contactDetails: ", row[1])
-            print("creationDate: ", row[2], "\n")
+        elif user_input == "b":
+            order_by_creation = "SELECT * FROM contacts ORDER BY contactDetails"
+            db_cursor.execute(order_by_creation)
 
-    # O - OUTPUT ALL CONTACTS
+            output_result = db_cursor.fetchall()
+            print("List of contacts Alphabetically: \n")
 
-    elif user_input == 'o':
-        output_all_sql = "SELECT * FROM contacts"
-        db_cursor.execute(output_all_sql)
+            for row in output_result:
+                print("ID: ", row[0])
+                print("contactDetails: ", row[1])
+                print("creationDate: ", row[2], "\n")
 
-        output_result = db_cursor.fetchall()
-        print("Total number of contacts is: ", db_cursor.rowcount)
+        # C - OUTPUT BY CREATION DATE
 
-        for row in output_result:
-            print("ID: ", row[0])
-            print("contactDetails: ", row[1])
-            print("creationDate: ", row[2], "\n")
+        elif user_input == 'c':
+            order_by_creation = "SELECT * FROM contacts ORDER BY creationDate"
+            db_cursor.execute(order_by_creation)
 
-    # Q - QUIT PROGRAM
+            output_result = db_cursor.fetchall()
+            print("List of contacts by creationDate: \n")
 
-    elif user_input == 'q':
-        quit
+            for row in output_result:
+                print("ID: ", row[0])
+                print("contactDetails: ", row[1])
+                print("creationDate: ", row[2], "\n")
+
+        # O - OUTPUT ALL CONTACTS
+
+        elif user_input == 'o':
+            output_all_sql = "SELECT * FROM contacts"
+            db_cursor.execute(output_all_sql)
+
+            output_result = db_cursor.fetchall()
+            print("Total number of contacts is: ", db_cursor.rowcount)
+
+            for row in output_result:
+                print("ID: ", row[0])
+                print("contactDetails: ", row[1])
+                print("creationDate: ", row[2], "\n")
+
+        # Q - QUIT PROGRAM
+
+        elif user_input == 'q':
+            quit
+
+        menu_output()
 
 
 main()
