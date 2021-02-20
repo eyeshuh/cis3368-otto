@@ -5,6 +5,14 @@
 # importing the sql connector to allow python to communicate with it and execute commands
 import mysql.connector
 
+# establishing class - contacts 
+
+class Contacts:
+    def __init__(self, contact_id, contactDetails, creationDate):
+        self.id = contact_id
+        self.contactDetails = contactDetails
+        self.creationDate = creationDate
+
 # Setting up DB
 # Setting variable to establish connection to db
 # In the varialbe define the sql connector by adding the host, user, password, and db name the code will be speaking to
