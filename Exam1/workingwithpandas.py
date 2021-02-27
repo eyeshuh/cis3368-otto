@@ -13,7 +13,7 @@ some_data ={'Set1': (9875, 56.7968, -5.077508),
             'Set2': (5525, 57.07115, -2.638262),
             'Set3': (5533, 57.00628, -2.728924),
             'Set4': (5555, 57.099211, -2.78042),
-            'Set5': (5599, 57.033129, -2725616)
+            'Set5': (5599, 57.033129, -2.725616)
             }
 
 dataframe = pd.DataFrame(some_data)
@@ -80,7 +80,7 @@ x = dataframe.Attribute1
 y = dataframe.Attribute2
 
 plt.scatter(x,y)
-plt.savefig("chart.png")
+#plt.savefig("chart.png") # saves file locally 
 plt.show()
 
 # SHOW NEEDS TO BE AFTER THE SAVE 
