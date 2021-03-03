@@ -6,10 +6,24 @@ import requests
 import json
 import mysql.connector
 
+# 5fb8dd6b3ff2fb635e104eb9e0d4ac2f
 
-data_request = requests.get("https://api.propublica.org/congress/v1/bills/subjects/taxation.json", headers = {'X-API-Key': '5ItJh3Z1KOmu2yCRe0klswSzzdDq100ZCjzcedXq'})
-print (data_request.json()['results'][0])
+data_request = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Houston,Texas&appid=5fb8dd6b3ff2fb635e104eb9e0d4ac2f").json()
+print(data_request)
+print("\n\n")
 
+print(data_request['weather'])
+print("\n\n")
+
+print(data_request['weather'][0]['main'])
+print("\n\n")
+
+print(data_request['weather'][0]['description'])
+print("\n\n")
+
+def menu():
+    print("a - Display current weather")
+    print("l - Display long and lad coordinates")
 
 
 
