@@ -22,8 +22,33 @@ print(data_request['weather'][0]['description'])
 print("\n\n")
 
 def menu():
-    print("a - Display current weather")
-    print("l - Display long and lad coordinates")
+    print("c - Display current weather conditions")
+    print("f - Display the feel's like temperature")
+    print("h - Display current humidity")
+    print("m - View today's low and high temperatures")
+    print("s - View today's sunrise and sunset times")
+    print("t - Display current temperature")
+    print("a - Add record to Database")
+    print("v - View database")
+    print("q - Quit\n")
+    print("Choose an option: ")
+
+while True:
+    menu()
+    user_input = str(input())
+    
+    if user_input == 'q':
+        break
+
+
+
+
+# relevant parts of API #
+
+
+# print(data_request['weather'][0]['main'])
+# weather main, temp (t- main temp), description (weather.desc), feels like (main), min and max for day (main min and max)
+# humidity (main), sunrise and sunset (sys)
 
 
 
