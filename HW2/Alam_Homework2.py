@@ -19,7 +19,6 @@ def menu():
     print("f - Display the feel's like temperature") # completed
     print("h - Display current humidity") # completed 
     print("m - View today's low and high temperatures") # completed 
-    print("s - View today's sunrise and sunset times")
     print("t - Display current temperature") # completed 
     print("a - Add record to Database")
     print("v - View database")
@@ -34,7 +33,7 @@ while True:
 
 
     if user_input == 'c':
-        print("Today's weather conditions are: ", data_request['weather'][0]['description'])
+        print("Today's weather conditions contain: ", data_request['weather'][0]['description'])
         print("\n")
 
     elif user_input == 'f':
