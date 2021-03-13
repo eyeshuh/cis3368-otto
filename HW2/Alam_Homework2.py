@@ -10,7 +10,7 @@ import math
 # requesting the weather api using requests.get
 # previously requested token inputted within the url
 
-# api requesting data to show houston weather conditions in farenheit units
+# api requesting data to show houston weather conditions in farenheit unit to avoid extra calculations 
 
 data_request = requests.get(
     "http://api.openweathermap.org/data/2.5/weather?q=Houston,Texas&units=imperial&appid=5fb8dd6b3ff2fb635e104eb9e0d4ac2f").json()
